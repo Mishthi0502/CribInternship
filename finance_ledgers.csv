@@ -1,0 +1,6 @@
+Tenant_Name,Assigned_Unit,Monthly_Rent_INR,Maintenance_Fee_INR,Last_Payment_Date,Payment_Status,Balance_Due_INR
+Aarav Sharma,Flat-101,25000,3000,05-May-2026,Paid,0
+Ananya Iyer,Flat-203,32000,4000,02-May-2026,Paid,0
+Rohan Verma,Room-12B,18000,2000,10-Apr-2026,Overdue,20000
+Priya Patel,Flat-305,28000,3500,12-Mar-2026,Overdue,31500
+Vikram Malhotra,Suite-4,45000,5000,01-May-2026,Partial,19500

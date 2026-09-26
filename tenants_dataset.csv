@@ -1,0 +1,6 @@
+Tenant_ID,Full_Name,Phone_Number,Email,Assigned_Unit,Lease_Start_Date,KYC_Status
+1,Aarav Sharma,+91 98765 43210,aarav.s@gmail.com,Flat-101 (Lawsons Delmonte),12-Jan-2025,Aadhaar Verified
+2,Ananya Iyer,+91 98123 45678,ananya.i@outlook.com,Flat-203 (Trident Towers),01-Feb-2025,Aadhaar Verified
+3,Rohan Verma,+91 99887 76655,rohan.v@yahoo.com,Room-12B (Pre Prod Test),15-Aug-2024,PAN Verified
+4,Priya Patel,+91 97654 32109,priya.p@gmail.com,Flat-305 (Lawsons Delmonte),10-Nov-2024,Aadhaar Verified
+5,Vikram Malhotra,+91 95432 10987,vikram.m@gmail.com,Suite-4 (Trident Towers),05-Jan-2026,Pending Docs

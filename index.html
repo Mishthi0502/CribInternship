@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crib - Property Management Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 sidebar-bg text-gray-400 flex flex-col justify-between p-4 flex-shrink-0">
+        <div>
+            <div class="flex items-center gap-2 px-3 py-3 mb-4">
+                <div class="border border-indigo-400/30 rounded-lg px-3 py-1 text-white font-bold text-lg tracking-tight bg-opacity-10 bg-white">crib</div>
+            </div>
+            
+            <nav class="space-y-1">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="w-full flex items-center gap-3 px-3 py-2.5 text-sm sidebar-item-active font-medium transition">
+                    <i class="fa-solid fa-house w-4"></i> Home
+                </button>
+                <button onclick="switchTab('finance')" id="nav-finance" class="w-full flex items-center gap-3 px-3 py-2.5 text-sm hover:bg-indigo-950/40 hover:text-white rounded transition">
+                    <i class="fa-solid fa-wallet w-4"></i> Finance
+                </button>
+                <button onclick="switchTab('tenants')" id="nav-tenants" class="w-full flex items-center gap-3 px-3 py-2.5 text-sm hover:bg-indigo-950/40 hover:text-white rounded transition">
+                    <i class="fa-solid fa-users w-4"></i> Tenants
+                </button>
+                <button onclick="switchTab('complaints')" id="nav-complaints" class="w-full flex items-center gap-3 px-3 py-2.5 text-sm hover:bg-indigo-950/40 hover:text-white rounded transition">
+                    <i class="fa-solid fa-circle-exclamation w-4"></i> Complaints
+                </button>
+                <button onclick="switchTab('staff')" id="nav-staff" class="w-full flex items-center gap-3 px-3 py-2.5 text-sm hover:bg-indigo-950/40 hover:text-white rounded transition">
+                    <i class="fa-solid fa-user-tie w-4"></i> Staff
+                </button>
+                <button onclick="switchTab('landlord')" id="nav-landlord" class="w-full flex items-center gap-3 px-3 py-2.5 text-sm hover:bg-indigo-950/40 hover:text-white rounded transition">
+                    <i class="fa-solid fa-user-shield w-4"></i> Landlord
+                </button>
+                <button onclick="switchTab('inventory')" id="nav-inventory" class="w-full flex items-center gap-3 px-3 py-2.5 text-sm hover:bg-indigo-950/40 hover:text-white rounded transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> Inventory
+                </button>
+            </nav>
+        </div>
+
+        <div class="flex items-center gap-3 border-t border-indigo-950/60 pt-3">
+            <i class="fa-solid fa-gear text-sm cursor-pointer hover:text-white"></i>
+            <div class="w-7 h-7 rounded-full bg-indigo-500/30 flex items-center justify-center text-xs font-bold text-white ml-auto">S</div>
+        </div>
+    </aside>
+
+    <!-- MAIN APP VIEW -->
+    <main class="flex-1 flex flex-col overflow-y-auto">
+        <header class="bg-white border-b border-gray-100 px-8 py-4 flex justify-between items-center shrink-0">
+            <h1 id="page-title" class="text-xl font-bold text-gray-900">Dashboard Overview</h1>
+            <div class="flex items-center gap-2">
+                <span class="text-xs text-emerald-600 font-semibold bg-emerald-50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-sliders mr-1"></i> Interactive Filters Enabled</span>
+            </div>
+        </header>
+
+        <div class="p-8 max-w-7xl w-full mx-auto space-y-6">
+
+            <!-- TAB 1: DASHBOARD -->
+            <section id="page-dashboard" class="page-section active space-y-6">
+                <!-- TOP KPI CARDS -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex justify-between items-center">
+                        <div><h3 id="stat-properties-count" class="text-xl font-bold text-gray-900">--</h3><p class="text-xs font-medium text-gray-400">Properties</p></div>
+                        <div class="text-xl text-purple-600"><i class="fa-solid fa-building"></i></div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex justify-between items-center">
+                        <div><h3 id="stat-units-count" class="text-xl font-bold text-gray-900">--</h3><p class="text-xs font-medium text-gray-400">Total Units</p></div>
+                        <div class="text-xl text-amber-500"><i class="fa-solid fa-bed"></i></div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex justify-between items-center">
+                        <div><h3 id="stat-tenants-count" class="text-xl font-bold text-gray-900">--</h3><p class="text-xs font-medium text-gray-400">Active Tenants</p></div>
+                        <div class="text-xl text-blue-500"><i class="fa-solid fa-users"></i></div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex justify-between items-center">
+                        <div><h3 id="stat-landlords-count" class="text-xl font-bold text-rose-600">--</h3><p class="text-xs font-medium text-gray-400">Landlords</p></div>
+                        <div class="text-xl text-rose-500"><i class="fa-solid fa-key"></i></div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex justify-between items-center">
+                        <div><h3 id="stat-staff-count" class="text-xl font-bold text-teal-600">--</h3><p class="text-xs font-medium text-gray-400">Staff Members</p></div>
+                        <div class="text-xl text-teal-600"><i class="fa-solid fa-user-shield"></i></div>
+                    </div>
+                </div>
+
+                <!-- FILTER CONSOLE -->
+                <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-xs flex flex-wrap gap-3 items-center text-xs">
+                    <span class="font-bold text-gray-500 uppercase tracking-wider text-3xs">Dashboard Filters:</span>
+                    <select id="dashboard-time-filter" onchange="filterDashboardTime()" class="border border-gray-200 rounded-lg px-3 py-1.5 bg-gray-50 text-gray-700 font-medium focus:outline-none">
+                        <option value="6">Last 6 Months</option>
+                        <option value="3">Last 3 Months</option>
+                    </select>
+                </div>
+
+                <!-- CHART & SUMMARY -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-xs lg:col-span-2 flex flex-col justify-between">
+                        <h2 class="text-sm font-bold text-gray-800 uppercase tracking-wide">Collection History</h2>
+                        <div id="bar-chart-container" class="flex justify-around items-end h-56 pt-6 border-b border-gray-100 px-4"></div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-xs flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-2xs font-semibold text-gray-400 uppercase tracking-wider">Latest Pending Collection</p>
+                                <h2 id="metric-latest-pending" class="text-2xl font-black text-rose-600 mt-0.5">₹ 0</h2>
+                            </div>
+                            <div class="p-2.5 bg-rose-50 border border-rose-100 text-rose-700 text-xs rounded-lg flex items-center gap-2">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <span>Arrears: <strong id="metric-tenants-arrears">0</strong> tenants in backlogs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: FINANCE -->
+            <section id="page-finance" class="page-section space-y-6">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center flex-wrap gap-2">
+                        <h3 class="font-bold text-gray-800 text-sm">Tenant Financial Ledgers</h3>
+                        <!-- FINANCE FILTER -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-gray-500">Status Filter:</span>
+                            <select id="finance-status-filter" onchange="filterFinance()" class="border border-gray-200 rounded-lg px-2.5 py-1 text-xs bg-gray-50 focus:outline-none">
+                                <option value="ALL">All Statuses</option>
+                                <option value="Paid">Paid</option>
+                                <option value="Overdue">Overdue</option>
+                                <option value="Partial">Partial</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-50 text-gray-400 font-semibold uppercase border-b border-gray-100">
+                                <tr>
+                                    <th class="p-3">Tenant Name</th>
+                                    <th class="p-3">Unit</th>
+                                    <th class="p-3">Rent (₹)</th>
+                                    <th class="p-3">Maintenance (₹)</th>
+                                    <th class="p-3">Last Payment</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3 text-right">Balance Due (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="finance-table-body" class="divide-y divide-gray-50 text-gray-700"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: TENANTS -->
+            <section id="page-tenants" class="page-section space-y-6">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center flex-wrap gap-2">
+                        <h3 class="font-bold text-gray-800 text-sm">Active Tenant Directory</h3>
+                        <!-- TENANT FILTERS -->
+                        <div class="flex items-center gap-3">
+                            <select id="tenant-kyc-filter" onchange="filterTenants()" class="border border-gray-200 rounded-lg px-2.5 py-1 text-xs bg-gray-50 focus:outline-none">
+                                <option value="ALL">All KYC Statuses</option>
+                                <option value="Aadhaar Verified">Aadhaar Verified</option>
+                                <option value="PAN Verified">PAN Verified</option>
+                                <option value="Pending Docs">Pending Docs</option>
+                            </select>
+                            <input type="text" id="tenant-search" onkeyup="filterTenants()" placeholder="Search name or unit..." class="px-3 py-1 border border-gray-200 rounded-lg text-xs w-52 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-50 text-gray-400 font-semibold uppercase border-b border-gray-100">
+                                <tr>
+                                    <th class="p-3">ID</th>
+                                    <th class="p-3">Name</th>
+                                    <th class="p-3">Contact Details</th>
+                                    <th class="p-3">Assigned Unit</th>
+                                    <th class="p-3">Lease Start</th>
+                                    <th class="p-3">KYC Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tenants-table-body" class="divide-y divide-gray-50 text-gray-700"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: COMPLAINTS -->
+            <section id="page-complaints" class="page-section space-y-6">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center flex-wrap gap-2">
+                        <h3 class="font-bold text-gray-800 text-sm">Issue Registry</h3>
+                        <!-- COMPLAINTS FILTERS -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-gray-500">Category:</span>
+                            <select id="complaint-category-filter" onchange="filterComplaints()" class="border border-gray-200 rounded-lg px-2.5 py-1 text-xs bg-gray-50 focus:outline-none">
+                                <option value="ALL">All Categories</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="Internet/Wi-Fi">Internet/Wi-Fi</option>
+                                <option value="Appliance">Appliance</option>
+                            </select>
+                            <span class="text-xs text-gray-500 ml-2">Status:</span>
+                            <select id="complaint-status-filter" onchange="filterComplaints()" class="border border-gray-200 rounded-lg px-2.5 py-1 text-xs bg-gray-50 focus:outline-none">
+                                <option value="ALL">All Statuses</option>
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-50 text-gray-400 font-semibold uppercase border-b border-gray-100">
+                                <tr>
+                                    <th class="p-3">Ticket ID</th>
+                                    <th class="p-3">Raised By</th>
+                                    <th class="p-3">User Role</th>
+                                    <th class="p-3">Category</th>
+                                    <th class="p-3">Description</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3">Assigned Staff</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complaints-table-body" class="divide-y divide-gray-50 text-gray-700"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: STAFF -->
+            <section id="page-staff" class="page-section space-y-6">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center flex-wrap gap-2">
+                        <h3 class="font-bold text-gray-800 text-sm">Staff Roster</h3>
+                        <!-- STAFF FILTER -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-gray-500">Property:</span>
+                            <select id="staff-property-filter" onchange="filterStaff()" class="border border-gray-200 rounded-lg px-2.5 py-1 text-xs bg-gray-50 focus:outline-none">
+                                <option value="ALL">All Properties</option>
+                                <option value="Lawsons Delmonte">Lawsons Delmonte</option>
+                                <option value="Trident">Trident</option>
+                                <option value="pre prod test">pre prod test</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-50 text-gray-400 font-semibold uppercase border-b border-gray-100">
+                                <tr>
+                                    <th class="p-3">Staff ID</th>
+                                    <th class="p-3">Staff Name</th>
+                                    <th class="p-3">Role</th>
+                                    <th class="p-3">Assigned Property</th>
+                                    <th class="p-3">Contact</th>
+                                    <th class="p-3">Shift Hours</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staff-table-body" class="divide-y divide-gray-50 text-gray-700"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 6: LANDLORD -->
+            <section id="page-landlord" class="page-section space-y-6">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center flex-wrap gap-2">
+                        <h3 class="font-bold text-gray-800 text-sm">Landlords Directory</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-50 text-gray-400 font-semibold uppercase border-b border-gray-100">
+                                <tr>
+                                    <th class="p-3">Landlord ID</th>
+                                    <th class="p-3">Name</th>
+                                    <th class="p-3">Property Name</th>
+                                    <th class="p-3">Contact Info</th>
+                                    <th class="p-3">Units Managed</th>
+                                    <th class="p-3">Bank Account</th>
+                                </tr>
+                            </thead>
+                            <tbody id="landlord-table-body" class="divide-y divide-gray-50 text-gray-700"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 7: INVENTORY -->
+            <section id="page-inventory" class="page-section space-y-6">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center flex-wrap gap-2">
+                        <h3 class="font-bold text-gray-800 text-sm">Property Inventory Breakdown</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-50 text-gray-400 font-semibold uppercase border-b border-gray-100">
+                                <tr>
+                                    <th class="p-3">Property ID</th>
+                                    <th class="p-3">Property Name</th>
+                                    <th class="p-3">Total Units</th>
+                                    <th class="p-3">Occupied (Active)</th>
+                                    <th class="p-3">Vacant (Available)</th>
+                                    <th class="p-3">Occupancy Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventory-table-body" class="divide-y divide-gray-50 text-gray-700"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+</body>
+</html>

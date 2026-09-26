@@ -1,0 +1,7 @@
+Property_ID,Property_Name,Total_Units,Occupied_Active,Occupied_Ending,Occupied_MoveOut,Vacant_Available,Vacant_Booked,Vacant_Invited,Occupancy_Rate
+PROP-01,Lawsons Delmonte,39,13,2,1,20,2,1,34%
+PROP-02,jsbs,50,0,0,0,50,0,0,0%
+PROP-03,pre prod test,20,10,0,0,8,1,1,50%
+PROP-04,Trident,80,50,4,1,22,2,1,63%
+PROP-05,commedia,45,5,1,0,37,1,1,12%
+PROP-06,add new,10,8,0,0,2,0,0,80%

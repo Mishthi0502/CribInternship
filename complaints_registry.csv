@@ -1,0 +1,5 @@
+Ticket_ID,Raised_By,User_Role,Category,Description,Status,Assigned_Staff
+TICK-801,Aarav Sharma,Tenant,Plumbing,Water leakage in master bathroom sink,Pending,Rajesh Kumar (Plumber)
+TICK-802,Ratan Kumar,Staff,Electrical,Corridor light fixtures blinking on 2nd floor,In Progress,Sunil Verma (Electrician)
+TICK-803,Ananya Iyer,Tenant,Internet/Wi-Fi,High latency on 5GHz Wi-Fi router,Resolved,Amit Patel (IT Tech)
+TICK-804,Priya Patel,Tenant,Appliance,AC compressor making loud noises,Pending,Rajesh Kumar (Plumber)
