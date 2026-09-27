@@ -89,8 +89,17 @@
                 <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-xs flex flex-wrap gap-3 items-center text-xs">
                     <span class="font-bold text-gray-500 uppercase tracking-wider text-3xs">Dashboard Filters:</span>
                     <select id="dashboard-time-filter" onchange="filterDashboardTime()" class="border border-gray-200 rounded-lg px-3 py-1.5 bg-gray-50 text-gray-700 font-medium focus:outline-none">
-                        <option value="6">Last 6 Months</option>
+                        <option value="1">Last 1 Month</option>
                         <option value="3">Last 3 Months</option>
+                        <option value="6" selected>Last 6 Months</option>
+                        <option value="9">Last 9 Months</option>
+                        <option value="12">Last 12 Months</option>
+                        <option value="18">Last 18 Months</option>
+                        <option value="24">Last 24 Months</option>
+                        <option value="36">Last 36 Months</option>
+                        <option value="2025">Year 2025</option>
+                        <option value="2026">Year 2026</option>
+                        <option value="ALL">All Time</option>
                     </select>
                 </div>
 
@@ -98,7 +107,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-xs lg:col-span-2 flex flex-col justify-between">
                         <h2 class="text-sm font-bold text-gray-800 uppercase tracking-wide">Collection History</h2>
-                        <div id="bar-chart-container" class="flex justify-around items-end h-56 pt-6 border-b border-gray-100 px-4"></div>
+                        <div id="bar-chart-container" class="flex flex-nowrap gap-6 items-end h-56 pt-6 border-b border-gray-100 px-4 overflow-x-auto min-w-0"></div>
                     </div>
 
                     <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-xs flex flex-col justify-between">
